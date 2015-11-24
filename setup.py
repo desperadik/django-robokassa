@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#coding: utf-8
+# -*- coding: utf-8 -*- 
 from distutils.core import setup
 
 for cmd in ('egg_info', 'develop'):
@@ -8,7 +8,7 @@ for cmd in ('egg_info', 'develop'):
         from setuptools import setup
 
 import sys
-reload(sys).setdefaultencoding("UTF-8")
+#reload(sys).setdefaultencoding("UTF-8")
 
 setup(
     name='django-robokassa',
@@ -16,12 +16,12 @@ setup(
     author='Mikhail Korobov',
     author_email='kmike84@gmail.com',
 
-    packages=['robokassa', 'robokassa.migrations'],
+    packages=['django_robokassa', 'django_robokassa.migrations'],
 
     url='https://bitbucket.org/kmike/django-robokassa/',
     license = 'MIT license',
-    description = u'Приложение для интеграции платежной системы ROBOKASSA в проекты на Django.'.encode('utf8'),
-    long_description = open('README.rst').read().decode('utf8') + u"\n\n" + open('CHANGES.rst').read().decode('utf8'),
+    description = 'Приложение для интеграции платежной системы ROBOKASSA в проекты на Django.',
+    long_description = open('README.rst').read().decode('utf-8') + u"\n\n" + open('CHANGES.rst').read().decode('utf-8'),
 
     requires=['django (>= 1.3)'],
 

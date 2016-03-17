@@ -9,6 +9,13 @@ for cmd in ('egg_info', 'develop'):
 
 import sys
 
+if sys.version_info[0] == 2:
+    long_description = open('README.rst').read().decode('utf-8') + u"\n\n" + open('CHANGES.rst').read().decode('utf-8')
+elif sys.version_info[0] == 3:
+    long_description = open('README.rst', encoding='utf-8').read() + u"\n\n" + open('CHANGES.rst', encoding='utf-8').read()
+else:
+    long_description = ''
+
 setup(
     name='django-robokassa',
     version='1.2',
@@ -20,7 +27,7 @@ setup(
     url='https://bitbucket.org/kmike/django-robokassa/',
     license = 'MIT license',
     description = 'Приложение для интеграции платежной системы ROBOKASSA в проекты на Django.',
-    long_description = open('README.rst', encoding='utf-8').read() + u"\n\n" + open('CHANGES.rst', encoding='utf-8').read(),
+    long_description = long_description,
 
     requires=['django (>= 1.8)'],
 

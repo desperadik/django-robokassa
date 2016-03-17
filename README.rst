@@ -24,8 +24,11 @@ ROBOKASSA (http://robokassa.ru/Doc/Ru/Interface.aspx). Приложение ре
 
     $ python manage.py migrate
 
-Для работы требуется django >= 1.3.1.
+Для работы требуется django >= 1.8.
+Используйте django-robokassa версии 1.2, если проект на django 1.6.x, 1.5.x, 1.4.x или django 1.3.x.
 Используйте django-robokassa версии 0.9.3, если проект на django 1.2.x или django 1.1.x.
+
+Поддерживает версии Python от 2.7 до 3.5.
 
 Настройка
 =========

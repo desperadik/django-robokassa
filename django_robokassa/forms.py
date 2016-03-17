@@ -1,7 +1,15 @@
 # -*- coding: utf-8 -*- 
 from hashlib import md5
-from urllib.parse import urlencode
 from django import forms
+try:
+    from urllib import urlencode
+except ImportError:
+    from urllib.parse import urlencode
+    
+try:
+    unicode
+except NameError:
+    unicode = str
 
 from django_robokassa.conf import LOGIN, PASSWORD1, PASSWORD2
 from django_robokassa.conf import STRICT_CHECK, FORM_TARGET, EXTRA_PARAMS, TEST_MODE
@@ -94,7 +102,7 @@ class RobokassaForm(BaseRobokassaForm):
             val = self.initial.get(name, field.initial)
             if not val:
                 return val
-            return str(val)
+            return unicode(val)
 
         fields = [(name, _initial(name, field).encode('utf-8'))
                   for name, field in self.fields.items()
@@ -109,7 +117,7 @@ class RobokassaForm(BaseRobokassaForm):
                 name] if name in self.initial else self.fields[name].initial
             if value is None:
                 return ''
-            return str(value)
+            return unicode(value)
         standard_part = ':'.join([_val('MrchLogin'), _val('OutSum'), _val('InvId'), PASSWORD1])
         return self._append_extra_part(standard_part, _val)
 
@@ -132,7 +140,7 @@ class ResultURLForm(BaseRobokassaForm):
         return self.cleaned_data
 
     def _get_signature_string(self):
-        _val = lambda name: str(self.cleaned_data[name])
+        _val = lambda name: unicode(self.cleaned_data[name])
         standard_part = ':'.join([_val('OutSum'), _val('InvId'), PASSWORD2])
         return self._append_extra_part(standard_part, _val)
 
@@ -142,7 +150,7 @@ class _RedirectPageForm(ResultURLForm):
     Culture = forms.CharField(max_length=10)
 
     def _get_signature_string(self):
-        _val = lambda name: str(self.cleaned_data[name])
+        _val = lambda name: unicode(self.cleaned_data[name])
         standard_part = ':'.join([_val('OutSum'), _val('InvId'), PASSWORD1])
         return self._append_extra_part(standard_part, _val)
 

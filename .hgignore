@@ -29,3 +29,6 @@ dist/
 MANIFEST
 django_robokassa.egg-info
 .tox
+
+#virtualenv
+env/

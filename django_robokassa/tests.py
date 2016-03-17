@@ -6,6 +6,7 @@ from django_robokassa.conf import LOGIN, PASSWORD1, PASSWORD2
 
 class RobokassaFormTest(TestCase):
     def setUp(self):
+        self.maxDiff = None
         self.form = RobokassaForm(initial = {
                        'OutSum': 100.00,
                        'InvId': 58,
@@ -24,7 +25,7 @@ class RobokassaFormTest(TestCase):
                          '%s::5:%s:shpparam1=None:shpparam2=None' % (LOGIN, PASSWORD1))
 
     def testRedirectUrl(self):
-        url = "https://merchant.roboxchange.com/Index.aspx?MrchLogin=test_login&OutSum=100.0&InvId=58&Desc=%D0%A5%D0%BE%D0%BB%D0%BE%D0%B4%D0%B8%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA+%22%D0%91%D0%B8%D1%80%D1%8E%D1%81%D0%B0%22&SignatureValue=0EC23BE40003640B35EC07F6615FFB57&Email=vasia%40example.com&Encoding=utf-8&shpparam1=None&shpparam2=None"
+        url = "https://auth.robokassa.ru/Merchant/Index.aspx?MrchLogin=test_login&OutSum=100.0&InvId=58&Desc=%D0%A5%D0%BE%D0%BB%D0%BE%D0%B4%D0%B8%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA+%22%D0%91%D0%B8%D1%80%D1%8E%D1%81%D0%B0%22&SignatureValue=0EC23BE40003640B35EC07F6615FFB57&Email=vasia%40example.com&Encoding=utf-8&shpparam1=None&shpparam2=None"
         self.assertEqual(self.form.get_redirect_url(), url)
 
 

@@ -2,4 +2,5 @@
 
 class RobokassaConfig(AppConfig):
     name = 'django-robokassa'
-    label = 'robokassa'
+    label = 'Robokassa'
+    verbose_name = u'Робокасса'
